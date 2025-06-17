@@ -1,0 +1,25 @@
+4.2.1 GET simple
+Quel est le type de retour de r.headers ? Et de r.json() ?
+
+r.headers est un dictionnaire spécial (CaseInsensitiveDict), qui contient les en-têtes de la réponse.
+r.json() est un dictionnaire Python contenant les données JSON de la réponse.
+
+Que se passe-t-il si vous demandez .text au lieu de .json() ?
+
+Avec .text, on obtient la réponse brute sous forme de texte (une chaîne de caractères).
+Avec .json(), on obtient directement le JSON décodé en dictionnaire.
+
+Voyez-vous votre User-Agent dans la réponse ?
+
+Oui, on voit le User-Agent dans la réponse, dans le champ headers retourné par httpbin.org.
+
+4.2.2 GET avec paramètres
+Quelle URL est générée automatiquement ?
+
+Par exemple :
+https://httpbin.org/get?pseudo=roger&canal=coincoin
+Les paramètres sont ajoutés dans l’URL.
+
+Les paramètres sont-ils visibles dans la réponse ?
+
+Oui, ils sont visibles dans le champ args de la réponse JSON.
