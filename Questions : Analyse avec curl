@@ -1,1 +1,28 @@
+Que fait l’option -I ? Et -L ?
+→ L’option -I demande juste les en-têtes de la réponse, sans le corps (le contenu).
+L’option -L suit automatiquement les redirections (si le serveur répond avec un 301 ou 302, curl va suivre l’URL donnée).
 
+Que signifie chaque code de statut observé ?
+→ 200 OK : la requête a réussi.
+301 Moved Permanently : la ressource a été déplacée définitivement.
+302 Found : la ressource a été déplacée temporairement.
+304 Not Modified : le fichier n’a pas changé (cache).
+404 Not Found : la ressource n’existe pas.
+
+Quelle méthode est utilisée par défaut ? Comment en forcer une autre ?
+→ Par défaut, curl utilise la méthode GET.
+Pour changer de méthode, on utilise -X suivi du nom de la méthode, par exemple :
+curl -X POST http://perdu.com/.
+
+Que voyez-vous dans le corps de la réponse ?
+→ Dans le corps, on voit le contenu de la page web (du HTML).
+Si on a utilisé -I, il n’y a pas de corps, juste les entêtes.
+
+Quels en-têtes sont renvoyés par le serveur ?
+→ Le serveur renvoie des entêtes comme :
+Content-Type (type du contenu)
+Content-Length (taille du contenu)
+Date (date de la réponse)
+Server (logiciel du serveur)
+Location (en cas de redirection)
+Set-Cookie (pour gérer les cookies)
