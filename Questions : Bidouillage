@@ -1,25 +1,76 @@
+-------------------------------------
 4.2.1 GET simple
-Quel est le type de retour de r.headers ? Et de r.json() ?
+-------------------------------------
 
-r.headers est un dictionnaire spécial (CaseInsensitiveDict), qui contient les en-têtes de la réponse.
+Quel est le type de retour de r.headers ? Et de r.json() ?
+→ r.headers est un dictionnaire spécial (CaseInsensitiveDict), qui contient les en-têtes de la réponse.
 r.json() est un dictionnaire Python contenant les données JSON de la réponse.
 
 Que se passe-t-il si vous demandez .text au lieu de .json() ?
-
-Avec .text, on obtient la réponse brute sous forme de texte (une chaîne de caractères).
+→ Avec .text, on obtient la réponse brute sous forme de texte (une chaîne de caractères).
 Avec .json(), on obtient directement le JSON décodé en dictionnaire.
 
 Voyez-vous votre User-Agent dans la réponse ?
+→ Oui, on voit le User-Agent dans la réponse, dans le champ headers retourné par httpbin.org.
 
-Oui, on voit le User-Agent dans la réponse, dans le champ headers retourné par httpbin.org.
-
+-------------------------------------
 4.2.2 GET avec paramètres
-Quelle URL est générée automatiquement ?
+-------------------------------------
 
-Par exemple :
+Quelle URL est générée automatiquement ?
+→ Par exemple :
 https://httpbin.org/get?pseudo=roger&canal=coincoin
 Les paramètres sont ajoutés dans l’URL.
 
 Les paramètres sont-ils visibles dans la réponse ?
+→ Oui, ils sont visibles dans le champ args de la réponse JSON.
 
-Oui, ils sont visibles dans le champ args de la réponse JSON.
+-------------------------------------
+4.2.3 POST avec JSON
+-------------------------------------
+
+Quelle différence entre json=... et data=... ?
+→ json=... dit à requests de transformer automatiquement le dictionnaire en JSON et de mettre le bon Content-Type: application/json.
+data=... envoie les données comme du form-urlencoded ou du texte brut.
+
+Quel est le Content-Type envoyé par défaut ?
+→ Avec json=..., le Content-Type est application/json.
+
+-------------------------------------
+4.2.4 POST avec en-têtes
+-------------------------------------
+
+Voyez-vous votre en-tête X-CanaDuck dans la réponse ?
+→ Oui, httpbin.org renvoie tous les en-têtes reçus dans la réponse, on voit donc bien X-CanaDuck.
+
+Que se passerait-il si vous mettiez Content-Type: text/plain manuellement ?
+→ Le serveur croirait recevoir du texte brut au lieu de JSON.
+Si on envoie quand même du JSON, le serveur risque de ne pas le comprendre correctement.
+
+-------------------------------------
+4.3 Un peu de réflexion
+-------------------------------------
+
+Dans un projet réel, comment encapsuleriez-vous un appel à POST /msg dans une fonction Python ?
+→ On écrirait une fonction comme :
+python
+Copier
+Modifier
+import requests
+
+def envoyer_message(pseudo, message):
+    url = "https://monserveur.com/msg"
+    data = {"pseudo": pseudo, "message": message}
+    r = requests.post(url, json=data)
+    return r.status_code, r.json()
+
+Quels avantages présente requests par rapport à curl ou telnet ?
+→ Plus simple à utiliser dans du code Python.
+Automatique pour le JSON et les paramètres.
+Gère facilement les erreurs et les exceptions.
+Très lisible pour les développeurs.
+
+Quels inconvénients voyez-vous ? (dépendance, abstraction…)
+→ Nécessite d’installer la bibliothèque (pip install requests).
+On ne voit pas toujours tout ce qui se passe dans le protocole HTTP (c’est plus "abstrait").
+Moins bon pour déboguer des bas niveaux comme on peut le faire avec curl ou telnet.
