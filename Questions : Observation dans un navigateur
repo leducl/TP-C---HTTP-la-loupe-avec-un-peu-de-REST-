@@ -1,18 +1,18 @@
 Quelle méthode HTTP est utilisée ?
-La méthode utilisée est POST.
+→ La méthode utilisée est POST.
 C’est écrit dans Méthode de requête: POST.
 
 Quels statuts apparaissent (200, 301, 302, 304, etc.) ?
-Le statut qu’on voit ici est 200 OK, donc la requête a bien réussi.
+→ Le statut qu’on voit ici est 200 OK, donc la requête a bien réussi.
 Quand tu as ouvert les deux sites (perdu.com et 3ilrodez.fr), tu peux aussi voir parfois des 301 ou 302 (pour les redirections), ou des 304 (quand la ressource est déjà en cache).
 
 À quoi sert le champ Host: dans la requête ?
-Le champ Host: sert à indiquer au serveur quel site on veut contacter.
+→ Le champ Host: sert à indiquer au serveur quel site on veut contacter.
 C’est utile quand plusieurs sites sont hébergés sur la même adresse IP.
 Par exemple ici, Host: obseu.astarsbuilding.com indique le nom du site demandé.
 
 Quels en-têtes sont pertinents côté client ? côté serveur ?
-Côté client (ce que le navigateur envoie) :
+→ Côté client (ce que le navigateur envoie) :
 User-Agent (le type de navigateur)
 Accept (les formats acceptés)
 Content-Type (le format des données envoyées)
@@ -27,6 +27,6 @@ Date (l’heure de la réponse)
 Access-Control-Allow-* (autorisation des accès cross-site)
 
 Voyez-vous des cookies, du cache, ou des redirections ?
-Oui, il y a un cookie :
+→ Oui, il y a un cookie :
 cookie: cg_uuid=a87b9bdca9bab5dfe5355b070e11499b.
 Ici, on ne voit pas de cache (304) ni de redirection (301 ou 302) sur cette requête.
